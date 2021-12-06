@@ -7,10 +7,21 @@
     <Filter Include="src\Player">
       <UniqueIdentifier>{be2c88f4-ad1f-4c38-aa3b-08080c4c9983}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Manager">
+      <UniqueIdentifier>{158a2792-2143-4068-a401-7a6b2d05607c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\Manager\manager.cpp">
+      <Filter>src\Manager</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Manager\manager.h">
+      <Filter>src\Manager</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
