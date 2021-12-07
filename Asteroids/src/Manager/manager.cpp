@@ -4,7 +4,9 @@ App::App()
 {
 	program = true;
 	InitWindow(screenWidth, screenHeight, "Asteroids MK II");
+	SetExitKey(KEY_NUM_LOCK);
 	SetTargetFPS(60);
+	currentScreen = Screens::Gameplay;
 }
 
 App::~App()
@@ -15,10 +17,38 @@ void App::loop()
 {
 	while (program&&!WindowShouldClose())
 	{
-		BeginDrawing();
-		ClearBackground(RAYWHITE);
-		DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
-		EndDrawing();
+		input();
+		update();
+		draw();
 	}
 	CloseWindow();
+}
+
+void App::input()
+{
+
+}
+
+void App::update()
+{
+
+}
+
+void App::draw()
+{
+	BeginDrawing();
+	switch (currentScreen)
+	{
+	case Screens::Menu:
+		break;
+	case Screens::Gameplay:	
+		break;
+	case Screens::Gameover:
+		break;
+	case Screens::Credits:
+		break;
+	default:
+		break;
+	}
+	EndDrawing();
 }
