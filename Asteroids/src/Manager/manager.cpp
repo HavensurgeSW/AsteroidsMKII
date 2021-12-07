@@ -27,12 +27,25 @@ void App::loop()
 
 void App::input()
 {
-
+	p1->input();
 }
 
 void App::update()
 {
-
+	switch (currentScreen)
+	{
+	case Screens::Menu:
+		break;
+	case Screens::Gameplay:
+		p1->update();
+		break;
+	case Screens::Gameover:
+		break;
+	case Screens::Credits:
+		break;
+	default:
+		break;
+	}
 }
 
 void App::draw()
