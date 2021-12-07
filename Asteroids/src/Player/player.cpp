@@ -1,80 +1,84 @@
+#include "player.h"
+
 #include <cmath>
 #include <iostream>
-
-#include "player.h"
 
 using namespace std;
 
 
+namespace MK2 {
+	Player::Player()
+	{
+		pos.x = static_cast<float>(GetScreenWidth() / 2);
+		pos.y = static_cast<float>(GetScreenHeight() / 2);
+		force.x = 0.0f;
+		force.y = 0.0f;
+		acceleration = 15.0f;
+		rotation = 0.0f;
+		radius = 22.5f;
 
-Player::Player()
-{
-	pos.x = GetScreenWidth()/2;
-	pos.y = GetScreenHeight()/2;
-	force.x = 0.0f;
-	force.y = 0.0f;
-	acceleration = 15.0f;
-	rotation = 0.0f;
-	radius = 22.5f;
+		sprite = LoadTexture("res/player.png");
+	}
 
-	sprite = LoadTexture("res/player.png");
-}
-
-Player::~Player()
-{
-	UnloadTexture(sprite);
-}
+	Player::~Player()
+	{
+		UnloadTexture(sprite);
+	}
 
 
-float Player::getRotation()
-{
-	return rotation;
-}
+	float Player::getRotation()
+	{
+		return rotation;
+	}
 
-float Player::getRadius()
-{
-	return radius;
-}
+	float Player::getRadius()
+	{
+		return radius;
+	}
 
-void Player::zero()
-{
-	pos.x = 0.0f;
-	pos.y = 0.0f;
-	force.x = 0.0f;
-	force.y = 0.0f;
-	acceleration = 0.0f;
-}
+	void Player::zero()
+	{
+		pos.x = static_cast<float>(GetScreenWidth() / 2);
+		pos.y = static_cast<float>(GetScreenHeight() / 2);
+		force.x = 0.0f;
+		force.y = 0.0f;
+	}
 
-void Player::input()
-{
-	if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON)) 
+	void Player::input()
+	{
+#if _DEBUG
+		if (IsKeyPressed(KEY_H))
+		{
+			zero();
+		}
+#endif
+	}
+
+	void Player::accelerate()
+	{
+		followMouse();
+		move();
+	}
+
+	void Player::draw()
+	{
+		DrawTexturePro(sprite, Rectangle{ 0,0,(float)sprite.width,(float)sprite.height }, Rectangle{ pos.x, pos.y, (float)sprite.width * 1.5f,(float)sprite.height * 1.5f },
+			Vector2{ ((float)sprite.width * 1.5f) / 2, ((float)sprite.height * 1.5f) / 2 }, rotation, WHITE); //30width texture amplified to fit 45pix diameter.
+	}
+
+	//PRIVATE - (Update)
+	void Player::followMouse()
+	{
+		rotation = atan2f(GetMousePosition().y - pos.y, GetMousePosition().x - pos.x);
+		rotation = (rotation * 180 / PI) + 90; //+90 for texture to point properly
+	}
+
+	void Player::move()
 	{
 		force.x = sin(rotation * DEG2RAD) * acceleration;
 		force.y = cos(rotation * DEG2RAD) * acceleration;
+
+		pos.x += (force.x * acceleration * GetFrameTime());
+		pos.y -= (force.y * acceleration * GetFrameTime());
 	}
-}
-
-void Player::update()
-{
-	followMouse();
-	move();
-}
-
-void Player::draw()
-{
-	DrawTexturePro(sprite, Rectangle{ 0,0,(float)sprite.width,(float)sprite.height },Rectangle{ pos.x, pos.y, (float)sprite.width *1.5f,(float)sprite.height * 1.5f },
-		Vector2{ ((float)sprite.width * 1.5f) / 2, ((float)sprite.height * 1.5f) / 2 }, rotation, WHITE); //30width texture amplified to fit 45pix diameter.
-}
-
-//PRIVATE - (Update)
-void Player::followMouse()
-{
-	rotation = atan2f(GetMousePosition().y - pos.y, GetMousePosition().x - pos.x);
-	rotation = (rotation * 180 / PI)+90; //+90 for texture to point properly
-}
-
-void Player::move()
-{
-	pos.x += (force.x * acceleration * GetFrameTime());
-	pos.y -= (force.y * acceleration * GetFrameTime());
 }

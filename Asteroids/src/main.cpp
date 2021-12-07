@@ -1,8 +1,10 @@
 #include "Manager/manager.h"
+using namespace MK2;
 
-void main()
+int main()
 {
-    App* Asteroids = new App();
+    Manager* Asteroids = new Manager();
     Asteroids->loop();
-  
+    delete Asteroids;
+
 }

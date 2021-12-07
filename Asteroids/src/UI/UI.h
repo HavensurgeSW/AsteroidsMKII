@@ -1,8 +1,10 @@
 #pragma once
-#include "raylib.h"
 
-namespace UI 
-{
-	void drawMousePointer();
-
+namespace MK2 {
+	class UI
+	{
+	public:
+		static void drawMousePointer();
+	};
 }
+

@@ -1,29 +1,30 @@
 #pragma once
 #include "raylib.h"
+namespace MK2 {
+	class Player {
+	private:
 
-class Player {
-private:
-	
-	Vector2 pos;
-	Vector2 force;
-	float acceleration;
-	float rotation;
-	float radius;
-	
-	Texture2D sprite;	
-public:
-	Player();
-	~Player();
+		Vector2 pos;
+		Vector2 force;
+		float acceleration;
+		float rotation;
+		float radius;
 
-	float getRotation();
-	float getRadius();
-	void zero();
+		Texture2D sprite;
+	public:
+		Player();
+		~Player();
 
-	void input();
-	void update();
-	void draw();
+		float getRotation();
+		float getRadius();
+		void zero();
 
-private:
-	void followMouse();
-	void move();
-};
+		void input();
+		void accelerate();
+		void draw();
+
+		void move();
+	private:
+		void followMouse();
+	};
+}

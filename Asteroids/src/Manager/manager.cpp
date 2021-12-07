@@ -1,71 +1,81 @@
 #include "manager.h"
 
-App::App()
-{
-	program = true;
-	InitWindow(screenWidth, screenHeight, "Asteroids MK II");
-	SetExitKey(KEY_NUM_LOCK);
-	SetTargetFPS(60);
-	currentScreen = Screens::Gameplay;
-	p1 = new Player;
-}
+#include "raylib.h"
 
-App::~App()
-{
-}
-
-void App::loop()
-{
-	while (program&&!WindowShouldClose())
+namespace MK2 {
+	Manager::Manager()
 	{
-		input();
-		update();
-		draw();
+		program = true;
+		InitWindow(screenWidth, screenHeight, "Asteroids MK II");
+		SetExitKey(0);
+		SetTargetFPS(60);
+		currentScreen = Screens::Gameplay;
+		p1 = new Player;
 	}
-	CloseWindow();
-}
 
-void App::input()
-{
-	p1->input();
-}
-
-void App::update()
-{
-	switch (currentScreen)
+	Manager::~Manager()
 	{
-	case Screens::Menu:
-		break;
-	case Screens::Gameplay:
-		p1->update();
-		break;
-	case Screens::Gameover:
-		break;
-	case Screens::Credits:
-		break;
-	default:
-		break;
+		delete p1;
 	}
-}
 
-void App::draw()
-{
-	BeginDrawing();
-	ClearBackground(BLACK);
-	switch (currentScreen)
+	void Manager::loop()
 	{
-	case Screens::Menu:
-		break;
-	case Screens::Gameplay:	
-		UI::drawMousePointer();
-		p1->draw();
-		break;
-	case Screens::Gameover:
-		break;
-	case Screens::Credits:
-		break;
-	default:
-		break;
+		while (program && !WindowShouldClose())
+		{
+			input();
+			update();
+			draw();
+		}
+		CloseWindow();
 	}
-	EndDrawing();
+
+	void Manager::input()
+	{
+		if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))
+		{
+			p1->accelerate();
+		}
+	}
+
+	void Manager::update()
+	{
+		switch (currentScreen)
+		{
+		case Screens::Menu:
+			break;
+		case Screens::Gameplay:
+			//FALTA INERCIA 
+			break;
+		case Screens::Gameover:
+			break;
+		case Screens::Credits:
+			break;
+		default:
+			break;
+		}
+	}
+
+	void Manager::draw()
+	{
+		BeginDrawing();
+		ClearBackground(BLACK);
+		switch (currentScreen)
+		{
+		case Screens::Menu:
+			break;
+		case Screens::Gameplay:
+
+			UI::drawMousePointer();
+			p1->draw();
+
+			break;
+		case Screens::Gameover:
+			break;
+		case Screens::Credits:
+			break;
+		default:
+			break;
+		}
+		EndDrawing();
+	}
 }
