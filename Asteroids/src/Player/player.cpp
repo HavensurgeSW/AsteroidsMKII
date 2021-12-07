@@ -13,7 +13,7 @@ Player::Player()
 	pos.y = GetScreenHeight()/2;
 	force.x = 0.0f;
 	force.y = 0.0f;
-	acceleration = 0.0f;
+	acceleration = 15.0f;
 	rotation = 0.0f;
 	radius = 22.5f;
 
@@ -49,13 +49,15 @@ void Player::input()
 {
 	if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON)) 
 	{
-		
+		force.x = sin(rotation * DEG2RAD) * acceleration;
+		force.y = cos(rotation * DEG2RAD) * acceleration;
 	}
 }
 
 void Player::update()
 {
 	followMouse();
+	move();
 }
 
 void Player::draw()
@@ -69,4 +71,10 @@ void Player::followMouse()
 {
 	rotation = atan2f(GetMousePosition().y - pos.y, GetMousePosition().x - pos.x);
 	rotation = (rotation * 180 / PI)+90; //+90 for texture to point properly
+}
+
+void Player::move()
+{
+	pos.x += (force.x * acceleration * GetFrameTime());
+	pos.y -= (force.y * acceleration * GetFrameTime());
 }

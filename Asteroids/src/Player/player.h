@@ -25,4 +25,5 @@ public:
 
 private:
 	void followMouse();
+	void move();
 };
