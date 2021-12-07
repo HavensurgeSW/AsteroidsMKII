@@ -26,11 +26,6 @@ Player::~Player()
 }
 
 
-Vector2 Player::getPos()
-{
-	return pos;
-}
-
 float Player::getRotation()
 {
 	return rotation;
@@ -52,7 +47,10 @@ void Player::zero()
 
 void Player::input()
 {
-	
+	if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON)) 
+	{
+		
+	}
 }
 
 void Player::update()
@@ -69,5 +67,6 @@ void Player::draw()
 //PRIVATE - (Update)
 void Player::followMouse()
 {
-	//rotation = atan2f(GetMousePosition().y - pos.y, GetMousePosition().x - pos.x * (180.0f / PI));
+	rotation = atan2f(GetMousePosition().y - pos.y, GetMousePosition().x - pos.x);
+	rotation = (rotation * 180 / PI)+90; //+90 for texture to point properly
 }

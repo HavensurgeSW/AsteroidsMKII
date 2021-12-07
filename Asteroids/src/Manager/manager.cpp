@@ -57,6 +57,7 @@ void App::draw()
 	case Screens::Menu:
 		break;
 	case Screens::Gameplay:	
+		UI::drawMousePointer();
 		p1->draw();
 		break;
 	case Screens::Gameover:

@@ -1,6 +1,7 @@
 #pragma once
 #include "raylib.h"
 #include "Player/player.h"
+#include "UI/UI.h"
 
 enum class Screens
 {

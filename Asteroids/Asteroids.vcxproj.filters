@@ -10,6 +10,12 @@
     <Filter Include="src\Manager">
       <UniqueIdentifier>{158a2792-2143-4068-a401-7a6b2d05607c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Meteor">
+      <UniqueIdentifier>{b52082d6-232d-4a46-83a1-29cb861af74b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\UI">
+      <UniqueIdentifier>{f9b6d063-0b21-46cc-bd73-a96d2e5b4b5c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -21,6 +27,12 @@
     <ClCompile Include="src\Player\player.cpp">
       <Filter>src\Player</Filter>
     </ClCompile>
+    <ClCompile Include="src\Meteor\meteor.cpp">
+      <Filter>src\Meteor</Filter>
+    </ClCompile>
+    <ClCompile Include="src\UI\UI.cpp">
+      <Filter>src\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Manager\manager.h">
@@ -28,6 +40,12 @@
     </ClInclude>
     <ClInclude Include="src\Player\player.h">
       <Filter>src\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UI\UI.h">
+      <Filter>src\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Meteor\meteor.h">
+      <Filter>src\Meteor</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

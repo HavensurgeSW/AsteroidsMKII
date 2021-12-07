@@ -15,7 +15,6 @@ public:
 	Player();
 	~Player();
 
-	Vector2 getPos();
 	float getRotation();
 	float getRadius();
 	void zero();
