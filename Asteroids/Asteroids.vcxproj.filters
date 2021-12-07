@@ -18,10 +18,16 @@
     <ClCompile Include="src\Manager\manager.cpp">
       <Filter>src\Manager</Filter>
     </ClCompile>
+    <ClCompile Include="src\Player\player.cpp">
+      <Filter>src\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Manager\manager.h">
       <Filter>src\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Player\player.h">
+      <Filter>src\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

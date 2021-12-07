@@ -1,5 +1,6 @@
 #pragma once
 #include "raylib.h"
+#include "Player/player.h"
 
 enum class Screens
 {
@@ -9,10 +10,11 @@ enum class Screens
 class App
 {
 private:
-	const int screenWidth = 800;
-	const int screenHeight = 450;
+	const int screenWidth = 1280;
+	const int screenHeight = 720;
 	bool program;
 	Screens currentScreen;
+	Player* p1;
 public:
 	App();
 	~App();

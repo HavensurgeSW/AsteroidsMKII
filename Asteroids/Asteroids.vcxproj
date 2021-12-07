@@ -21,9 +21,11 @@
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Manager\manager.cpp" />
+    <ClCompile Include="src\Player\player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Manager\manager.h" />
+    <ClInclude Include="src\Player\player.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

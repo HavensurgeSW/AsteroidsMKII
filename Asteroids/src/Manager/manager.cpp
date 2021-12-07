@@ -7,6 +7,7 @@ App::App()
 	SetExitKey(KEY_NUM_LOCK);
 	SetTargetFPS(60);
 	currentScreen = Screens::Gameplay;
+	p1 = new Player;
 }
 
 App::~App()
@@ -37,11 +38,13 @@ void App::update()
 void App::draw()
 {
 	BeginDrawing();
+	ClearBackground(BLACK);
 	switch (currentScreen)
 	{
 	case Screens::Menu:
 		break;
 	case Screens::Gameplay:	
+		p1->draw();
 		break;
 	case Screens::Gameover:
 		break;
