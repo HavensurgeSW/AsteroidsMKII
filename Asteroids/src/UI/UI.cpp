@@ -16,4 +16,12 @@ namespace MK2
 
 		//UI green is a developer inserted DEFINE in Raylib's format
 	}
+	void UI::drawEdges()
+	{
+		//3 = 3% of map edge.
+		DrawLineEx({ 0.0f + (GetScreenWidth() / 100) * 3, 0.0f + (GetScreenHeight() / 100) * 3 }, { 0.0f + (GetScreenWidth() / 100) * 3, static_cast<float>(GetScreenHeight()) - (GetScreenHeight() / 100) * 3 }, 4.0f, DARKGREEN);
+		DrawLineEx({ static_cast<float>(GetScreenWidth()) - (GetScreenWidth() / 100) * 3, 0.0f + (GetScreenHeight() / 100) * 3 }, { static_cast<float>(GetScreenWidth()) - (GetScreenWidth() / 100) * 3, static_cast<float>(GetScreenHeight()) - (GetScreenHeight() / 100) * 3 }, 4.0f, DARKGREEN);
+		DrawLineEx({ 0.0f + (GetScreenWidth() / 100) * 3, 0.0f + (GetScreenHeight() / 100) * 3 }, { static_cast<float>(GetScreenWidth()) - (GetScreenWidth() / 100) * 3, 0.0f + (GetScreenHeight() / 100) * 3 }, 4.0f, DARKGREEN);
+		DrawLineEx({ 0.0f + (GetScreenWidth() / 100) * 3, static_cast<float>(GetScreenHeight()) - (GetScreenHeight() / 100) * 3 }, { static_cast<float>(GetScreenWidth()) - (GetScreenWidth() / 100) * 3, static_cast<float>(GetScreenHeight()) - (GetScreenHeight() / 100) * 3 }, 4.0f, DARKGREEN);
+	}
 }

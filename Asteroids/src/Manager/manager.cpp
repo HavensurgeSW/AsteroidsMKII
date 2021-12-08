@@ -73,6 +73,7 @@ namespace MK2 {
 			p1->draw();
 			meteor->draw();
 
+			UI::drawEdges();
 			break;
 		case Screens::Gameover:
 			break;
