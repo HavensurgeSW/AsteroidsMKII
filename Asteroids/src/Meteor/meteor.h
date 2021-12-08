@@ -10,6 +10,7 @@ namespace MK2 {
 		float rotation;
 		float radius;
 		bool active;
+		int id;
 
 		static int bigMeteorCount;
 

@@ -140,7 +140,7 @@
 #define GREEN      CLITERAL(Color){ 0, 228, 48, 255 }      // Green
 #define LIME       CLITERAL(Color){ 0, 158, 47, 255 }      // Lime
 #define DARKGREEN  CLITERAL(Color){ 0, 117, 44, 255 }      // Dark Green
-#define UIGREEN    CLITERAL(Color){ 0, 117, 44, 80 }      // Dark Green
+#define UIGREEN    CLITERAL(Color){ 0, 117, 44, 65 }      // Dark Green
 #define SKYBLUE    CLITERAL(Color){ 102, 191, 255, 255 }   // Sky Blue
 #define BLUE       CLITERAL(Color){ 0, 121, 241, 255 }     // Blue
 #define DARKBLUE   CLITERAL(Color){ 0, 82, 172, 255 }      // Dark Blue
