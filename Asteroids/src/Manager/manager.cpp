@@ -31,6 +31,14 @@ namespace MK2 {
 		CloseWindow();
 	}
 
+	void Manager::collisions()
+	{
+		if (CheckCollisionCircles(p1->getCenter(), p1->getRadius(), meteor->getCenter(), meteor->getRadius()))
+		{
+			p1->zero();
+		}
+	}
+
 	void Manager::input()
 	{
 		if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))
@@ -49,6 +57,7 @@ namespace MK2 {
 			//FALTA INERCIA 
 			p1->update();
 			meteor->update();
+			collisions();
 			break;
 		case Screens::Gameover:
 			break;

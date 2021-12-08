@@ -36,6 +36,15 @@ namespace MK2 {
 		active = a;
 	}
 
+	Vector2 Meteor::getCenter()
+	{
+		Vector2 result;
+		result.x = pos.x - radius;
+		result.y = pos.y - radius;
+
+		return result;
+	}
+
 	void Meteor::explode()
 	{
 	}

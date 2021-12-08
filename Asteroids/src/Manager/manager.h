@@ -29,6 +29,8 @@ namespace MK2 {
 		~Manager();
 		void loop();
 
+		void collisions();
+
 		void input();
 		void update();
 		void draw();

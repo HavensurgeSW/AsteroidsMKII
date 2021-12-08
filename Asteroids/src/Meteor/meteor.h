@@ -18,9 +18,12 @@ namespace MK2 {
 	public:
 		Meteor();
 		~Meteor();
+
 		float getRadius();
+		Vector2 getCenter();
 		bool getActive();
 		void setActive(bool a);
+
 		void explode();
 		void setSpeed(Vector2 s);
 		static int getAmount();

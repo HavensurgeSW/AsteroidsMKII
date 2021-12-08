@@ -34,6 +34,14 @@ namespace MK2 {
 	{
 		return radius;
 	}
+	Vector2 Player::getCenter()
+	{
+		Vector2 result;
+		result.x = pos.x - radius;
+		result.y = pos.y - radius;
+	
+		return result;
+	}
 	void Player::zero()
 	{
 		pos.x = static_cast<float>(GetScreenWidth() / 2);

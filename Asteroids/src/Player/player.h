@@ -17,6 +17,7 @@ namespace MK2 {
 
 		float getRotation();
 		float getRadius();
+		Vector2 getCenter();
 		void zero();
 
 		void input();
