@@ -62,6 +62,8 @@ namespace MK2 {
 	{
 		pos.x += (force.x * acceleration * GetFrameTime());
 		pos.y -= (force.y * acceleration * GetFrameTime());
+
+		screenLimit();
 	}
 
 	void Player::draw()
@@ -71,15 +73,24 @@ namespace MK2 {
 	}
 
 	//PRIVATE - (Update)
-	void Player::followMouse()
-	{
-		rotation = atan2f(GetMousePosition().y - pos.y, GetMousePosition().x - pos.x);
-		rotation = (rotation * 180 / PI) + 90; //+90 for texture to point properly
-	}
-
 	void Player::move()
 	{
 		force.x = sin(rotation * DEG2RAD) * acceleration;
 		force.y = cos(rotation * DEG2RAD) * acceleration;
+	}
+
+	void Player::followMouse()
+	{
+		rotation = atan2f(GetMousePosition().y - pos.y, GetMousePosition().x - pos.x);
+		rotation = (rotation * 180 / PI) + 90; //+90 for texture to point properly
+
+	}
+
+	void Player::screenLimit()
+	{
+		if (pos.x > GetScreenWidth() + radius) pos.x = -radius;
+		else if (pos.x < 0 - radius) pos.x = GetScreenWidth() + radius;
+		if (pos.y > GetScreenHeight() + radius) pos.y = -radius;
+		else if (pos.y < 0 - radius) pos.y = GetScreenHeight() + radius;
 	}
 }

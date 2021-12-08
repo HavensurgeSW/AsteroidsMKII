@@ -27,5 +27,6 @@ namespace MK2 {
 		void move();
 	private:
 		void followMouse();
+		void screenLimit();
 	};
 }

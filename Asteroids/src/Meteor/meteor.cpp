@@ -87,7 +87,7 @@ namespace MK2 {
 			if (pos.y > GetScreenHeight() + radius) pos.y = -radius;
 			else if (pos.y < 0 - radius) pos.y = GetScreenHeight() + radius;
 
-			cout << pos.x << " " << pos.y << endl;
+			
 		}
 	}
 }
