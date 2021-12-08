@@ -1,6 +1,7 @@
 #include "manager.h"
-
 #include "raylib.h"
+
+#include "UI/UI.h"
 
 namespace MK2 {
 	Manager::Manager()
@@ -11,6 +12,7 @@ namespace MK2 {
 		SetTargetFPS(60);
 		currentScreen = Screens::Gameplay;
 		p1 = new Player;
+		meteor = new Meteor;
 	}
 
 	Manager::~Manager()
@@ -45,6 +47,8 @@ namespace MK2 {
 			break;
 		case Screens::Gameplay:
 			//FALTA INERCIA 
+			p1->update();
+			meteor->update();
 			break;
 		case Screens::Gameover:
 			break;
@@ -67,6 +71,7 @@ namespace MK2 {
 
 			UI::drawMousePointer();
 			p1->draw();
+			meteor->draw();
 
 			break;
 		case Screens::Gameover:

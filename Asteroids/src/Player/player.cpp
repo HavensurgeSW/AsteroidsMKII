@@ -30,12 +30,10 @@ namespace MK2 {
 	{
 		return rotation;
 	}
-
 	float Player::getRadius()
 	{
 		return radius;
 	}
-
 	void Player::zero()
 	{
 		pos.x = static_cast<float>(GetScreenWidth() / 2);
@@ -60,6 +58,12 @@ namespace MK2 {
 		move();
 	}
 
+	void Player::update()
+	{
+		pos.x += (force.x * acceleration * GetFrameTime());
+		pos.y -= (force.y * acceleration * GetFrameTime());
+	}
+
 	void Player::draw()
 	{
 		DrawTexturePro(sprite, Rectangle{ 0,0,(float)sprite.width,(float)sprite.height }, Rectangle{ pos.x, pos.y, (float)sprite.width * 1.5f,(float)sprite.height * 1.5f },
@@ -77,8 +81,5 @@ namespace MK2 {
 	{
 		force.x = sin(rotation * DEG2RAD) * acceleration;
 		force.y = cos(rotation * DEG2RAD) * acceleration;
-
-		pos.x += (force.x * acceleration * GetFrameTime());
-		pos.y -= (force.y * acceleration * GetFrameTime());
 	}
 }

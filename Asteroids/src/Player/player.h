@@ -21,6 +21,7 @@ namespace MK2 {
 
 		void input();
 		void accelerate();
+		void update();
 		void draw();
 
 		void move();

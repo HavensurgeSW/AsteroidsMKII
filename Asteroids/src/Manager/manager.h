@@ -1,7 +1,11 @@
 #pragma once
-#include "Player/player.h"
+#include <vector>
 
-#include "UI/UI.h"
+#include "Player/player.h"
+#include "Meteor/meteor.h"
+
+using namespace std;
+
 
 namespace MK2 {
 	enum class Screens
@@ -17,6 +21,9 @@ namespace MK2 {
 		bool program;
 		Screens currentScreen;
 		Player* p1;
+		//vector<Meteor> bigMeteor;
+		Meteor* meteor;
+
 	public:
 		Manager();
 		~Manager();
