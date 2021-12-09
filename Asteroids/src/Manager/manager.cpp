@@ -8,6 +8,13 @@ namespace MK2 {
 	{
 		program = true;
 		InitWindow(screenWidth, screenHeight, "Asteroids MK II");
+		InitAudioDevice();
+
+		background = LoadMusicStream("res/background.mp3");
+		breath = LoadMusicStream("res/breath.mp3");
+		beep = LoadMusicStream("res/beep.mp3");
+
+
 		SetExitKey(0);
 		SetTargetFPS(60);
 		currentScreen = Screens::Gameplay;
@@ -22,8 +29,19 @@ namespace MK2 {
 
 	void Manager::loop()
 	{
+		PlayMusicStream(background);
+		SetMusicVolume(background, 0.2f);
+		PlayMusicStream(breath);
+		SetMusicVolume(breath, 0.02f);
+		PlayMusicStream(beep);
+		SetMusicVolume(beep, 0.05f);
+
 		while (program && !WindowShouldClose())
 		{
+			UpdateMusicStream(background);
+			UpdateMusicStream(breath);
+			UpdateMusicStream(beep);
+
 			input();
 			update();
 			draw();

@@ -24,6 +24,10 @@ namespace MK2 {
 		//vector<Meteor> bigMeteor;
 		Meteor* meteor;
 
+		Music background;
+		Music breath;
+		Music beep;
+
 	public:
 		Manager();
 		~Manager();
