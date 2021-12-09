@@ -17,6 +17,12 @@ namespace MK2 {
 		rotation = 0.0f;
 		radius = 22.5f;
 
+		for (int i = 0; i < maxMissiles; i++)
+		{
+			magazine[i] = new Missile(pos, force);
+		}
+		reloadTimer = 0.0f;
+
 		sprite = LoadTexture("res/player.png");
 
 //		for (int i = 0; i < 5; i++) //Missile MAG size is 5.
@@ -61,11 +67,14 @@ namespace MK2 {
 
 	void Player::shoot()
 	{
-
-		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+		if (reloadTimer > 0.7f)
 		{
-			missiles.push_back(new Missile(pos, force));
-			
+			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)&&magazine[maxMissiles-1]->getActive()==false)
+			{
+				magazine[Missile::getMagPos()]->setActive(true);
+				magazine[Missile::getMagPos()]->updateVec(pos, force);
+			}
+			reloadTimer = 0;
 		}
 
 #if _DEBUG
@@ -87,10 +96,13 @@ namespace MK2 {
 		pos.x += (force.x * acceleration * GetFrameTime());
 		pos.y -= (force.y * acceleration * GetFrameTime());
 
-		for (size_t i = 0; i < missiles.size(); i++){
-			missiles[i]->update();
+		
+
+		for (int i = 0; i < maxMissiles; i++){
+			magazine[i]->update();
 		}
 
+		reloadTimer += GetFrameTime();
 		screenLimit();
 	}
 
@@ -99,8 +111,8 @@ namespace MK2 {
 		DrawTexturePro(sprite, Rectangle{ 0,0,(float)sprite.width,(float)sprite.height }, Rectangle{ pos.x, pos.y, (float)sprite.width * 1.5f,(float)sprite.height * 1.5f },
 			Vector2{ ((float)sprite.width * 1.5f) / 2, ((float)sprite.height * 1.5f) / 2 }, rotation, WHITE); //30width texture amplified to fit 45pix diameter.
 
-		for (size_t i = 0; i < missiles.size(); i++) {
-			missiles[i]->draw();
+		for (int i = 0; i < maxMissiles; i++) {
+			magazine[i]->draw();
 		}
 	}
 
@@ -115,7 +127,6 @@ namespace MK2 {
 	{
 		rotation = atan2f(GetMousePosition().y - pos.y, GetMousePosition().x - pos.x);
 		rotation = (rotation * 180 / PI) + 90; //+90 for texture to point properly
-
 	}
 
 	void Player::screenLimit()

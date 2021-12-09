@@ -4,6 +4,7 @@
 using namespace std;
 
 int Missile::missileAmount = 0;
+int Missile::activeMissiles = 0;
 
 Missile::Missile(Vector2 pos, Vector2 force){
 	this->pos = pos;
@@ -12,7 +13,7 @@ Missile::Missile(Vector2 pos, Vector2 force){
 
 	radius = 3.0f;
 	rotation = 0;
-	active = true;
+	active = false;
 	color = WHITE;
 	mouseVector = GetMousePosition();
 
@@ -31,7 +32,11 @@ Missile::~Missile()
 
 void Missile::update()
 {
-	move();
+	if (active)
+	{
+		move();
+		screenLimits();
+	}
 }
 
 void Missile::draw()
@@ -51,6 +56,38 @@ Vector2 Missile::getCenter()
 		return result;
 }
 
+bool Missile::getActive()
+{
+	return active;
+}
+
+void Missile::setActive(bool a)
+{
+	active = a;
+}
+
+void Missile::updateVec(Vector2 p, Vector2 f)
+{
+	activeMissiles++;
+	pos = p;
+
+	rotation = atan2f(GetMousePosition().y - pos.y, GetMousePosition().x - pos.x);
+	rotation = (rotation * 180 / PI) + 90; //+90 for texture to point properly
+	cout << rotation << endl;
+	cout << "Mag Pos: " << activeMissiles << endl;
+
+	force.x = f.x * 1.5f;
+	force.y = f.y * 1.5f;
+}
+
+int Missile::getMagPos()
+{
+	return activeMissiles;
+}
+
+void Missile::reloadMag(){
+	activeMissiles = 0;
+}
 //PRIVATE FUNCTIONS:
 void Missile::move()
 {
@@ -66,8 +103,36 @@ void Missile::move()
 
 void Missile::screenLimits()
 {
-	if (pos.x > GetScreenWidth() + radius)delete this;
-	else if (pos.x < 0 - radius)delete this;
-	if (pos.y > GetScreenHeight() + radius)delete this;
-	else if (pos.y < 0 - radius)delete this;
+	if (pos.x > GetScreenWidth()) {
+		zero();
+		activeMissiles--;
+		cout << "BEGONE DERECHA" << endl;
+	}
+	else if (pos.x < 0 - radius) {
+		zero();
+		activeMissiles--;
+		cout << "BEGONE IZQUIERDA" << endl;
+	}
+
+	if (pos.y > GetScreenHeight() + radius) {
+		zero();	
+		activeMissiles--;
+		cout << "BEGONE ABAJO" << endl;
+	}else if (pos.y < 0 - radius) {
+		zero();
+		activeMissiles--;
+		cout << "BEGONE ARRIBA" << endl;
+	}	
 }
+
+void Missile::zero()
+{
+	this->pos = pos;
+	this->force.x = force.x * 1.5f;
+	this->force.y = force.y * 1.5f;
+
+	radius = 3.0f;
+	rotation = 0;
+	active = false;
+}
+

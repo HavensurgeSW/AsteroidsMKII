@@ -8,14 +8,15 @@ using namespace std;
 namespace MK2 {
 	class Player {
 	private:
-		const int maxMissiles = 5;
+		const int maxMissiles = 8;
 		Vector2 pos;
 		Vector2 force;
 		float acceleration;
 		float rotation;
 		float radius;
 
-		vector<Missile*> missiles;
+		Missile* magazine[8];
+		float reloadTimer;
 
 		Texture2D sprite;
 	public:
