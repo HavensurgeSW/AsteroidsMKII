@@ -38,10 +38,6 @@ namespace MK2 {
 
 		while (program && !WindowShouldClose())
 		{
-			UpdateMusicStream(background);
-			UpdateMusicStream(breath);
-			UpdateMusicStream(beep);
-
 			input();
 			update();
 			draw();
@@ -54,6 +50,11 @@ namespace MK2 {
 		if (CheckCollisionCircles(p1->getCenter(), p1->getRadius(), meteor->getCenter(), meteor->getRadius()))
 		{
 			p1->zero();
+		}
+
+		//if (CheckCollisionsCircles(p1->getMissile()))
+		{
+
 		}
 
 
@@ -73,6 +74,10 @@ namespace MK2 {
 
 	void Manager::update()
 	{
+		UpdateMusicStream(background);
+		UpdateMusicStream(breath);
+		UpdateMusicStream(beep);
+
 		switch (currentScreen)
 		{
 		case Screens::Menu:
