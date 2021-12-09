@@ -56,6 +56,11 @@ Vector2 Missile::getCenter()
 		return result;
 }
 
+float Missile::getRadius()
+{
+	return radius;
+}
+
 bool Missile::getActive()
 {
 	return active;

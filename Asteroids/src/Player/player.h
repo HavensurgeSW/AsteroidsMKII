@@ -15,11 +15,11 @@ namespace MK2 {
 		float rotation;
 		float radius;
 
-		Missile* magazine[8];
 		float reloadTimer;
 
 		Texture2D sprite;
 	public:
+		Missile* magazine[8];
 		Player();
 		~Player();
 

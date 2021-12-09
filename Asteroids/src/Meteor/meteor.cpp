@@ -2,19 +2,49 @@
 #include <iostream>
 using namespace std;
 namespace MK2 {
-	int Meteor::bigMeteorCount = 0;
 
-	Meteor::Meteor()
+	Meteor::Meteor(int type)
 	{
-		pos = { 100.0f,100.0f };
+		Rectangle safeArea;
+		safeArea.width = 100;
+		safeArea.height = 100;
+		safeArea.x = GetScreenWidth()/2 - safeArea.width/2 ;
+		safeArea.y = GetScreenHeight() / 2 - safeArea.height / 2;
+
+
+		do {
+			pos = { static_cast<float>(GetRandomValue(0,GetScreenWidth())), static_cast<float>(GetRandomValue(0, GetScreenHeight())) };
+		} while (CheckCollisionPointRec(pos, safeArea));
+
 		randomSpeed();
 		rotation = 0;
-		radius = 40;
-		active = true;
-		bigMeteorCount++;
-		sprite = LoadTexture("res/smallMeteor.png");
-		id = 0;
-		
+
+		id = type;
+		atlas[0] = LoadTexture("res/bigMeteor.png");
+		atlas[1] = LoadTexture("res/midMeteor.png");
+		atlas[2] = LoadTexture("res/smallMeteor.png");
+
+	
+		switch (id)
+		{
+		case 0:
+			sprite = atlas[0];
+			radius = 40;
+			active = true;
+			break;
+		case 1:
+			sprite = atlas[1];
+			radius = 25;
+			active = false;
+			break;
+		case 2:
+			sprite = atlas[2];
+			radius = 15;
+			active = false;
+			break;
+		default:
+			break;
+		}
 	}
 
 	Meteor::~Meteor()
@@ -54,11 +84,6 @@ namespace MK2 {
 		force = f;
 	}
 
-	int Meteor::getBMAmount()
-	{
-		return bigMeteorCount;
-	}
-
 	void Meteor::update()
 	{
 		movement();
@@ -69,7 +94,7 @@ namespace MK2 {
 	{
 		if (active)
 		{
-			//DrawCircle(static_cast<int>(pos.x), static_cast<int>(pos.y), radius, SKYBLUE);
+			DrawCircle(static_cast<int>(pos.x), static_cast<int>(pos.y), radius, SKYBLUE);
 			DrawTexturePro(sprite,
 				Rectangle{ 0,0,(float)sprite.width,(float)sprite.height },
 				Rectangle{ pos.x, pos.y, (float)sprite.width * 2.8f,
@@ -91,8 +116,8 @@ namespace MK2 {
 
 	void Meteor::randomSpeed() 
 	{
-		force.x = static_cast<float>(GetRandomValue(90, 150));
-		force.y = static_cast<float>(GetRandomValue(90, 150));
+		force.x = static_cast<float>(GetRandomValue(-150, 150));
+		force.y = static_cast<float>(GetRandomValue(-150, 150));
 
 		cout << force.x << " " << force.y << endl;
 	}

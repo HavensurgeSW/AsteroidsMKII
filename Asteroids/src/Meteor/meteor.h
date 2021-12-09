@@ -12,11 +12,10 @@ namespace MK2 {
 		bool active;
 		int id;
 
-		static int bigMeteorCount;
-
+		Texture2D atlas[3];
 		Texture2D sprite;
 	public:
-		Meteor();
+		Meteor(int type);
 		~Meteor();
 
 		float getRadius();
@@ -35,5 +34,7 @@ namespace MK2 {
 		void movement();
 		void randomSpeed();
 		void screenLimit();
+
+		
 	};
 }

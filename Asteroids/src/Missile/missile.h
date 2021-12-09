@@ -23,6 +23,7 @@ public:
 	void draw();
 
 	Vector2 getCenter();
+	float getRadius();
 	bool getActive();
 	void setActive(bool a);
 

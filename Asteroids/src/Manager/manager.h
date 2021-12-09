@@ -22,7 +22,9 @@ namespace MK2 {
 		Screens currentScreen;
 		Player* p1;
 		//vector<Meteor> bigMeteor;
-		Meteor* meteor;
+		Meteor* bigMeteor[3];
+		Meteor* midMeteor[6];
+		Meteor* smallMeteor[12];
 
 		Music background;
 		Music breath;
@@ -33,11 +35,14 @@ namespace MK2 {
 		~Manager();
 		void loop();
 
+	private:
 		void collisions();
 
 		void input();
 		void update();
 		void draw();
+		void meteorUpdate();
+		void meteorDraw();
 	};
 }
 
