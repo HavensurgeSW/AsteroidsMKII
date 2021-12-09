@@ -37,6 +37,8 @@ namespace MK2 {
 		{
 			p1->zero();
 		}
+
+
 	}
 
 	void Manager::input()
@@ -44,6 +46,10 @@ namespace MK2 {
 		if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))
 		{
 			p1->accelerate();
+		}
+		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+		{
+			p1->shoot();
 		}
 	}
 

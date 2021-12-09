@@ -12,7 +12,7 @@ namespace MK2 {
 		radius = 40;
 		active = true;
 		bigMeteorCount++;
-		sprite = LoadTexture("res/bigMeteor.png");
+		sprite = LoadTexture("res/smallMeteor.png");
 		id = 0;
 		
 	}
@@ -54,7 +54,7 @@ namespace MK2 {
 		force = f;
 	}
 
-	int Meteor::getAmount()
+	int Meteor::getBMAmount()
 	{
 		return bigMeteorCount;
 	}

@@ -26,7 +26,7 @@ namespace MK2 {
 
 		void explode();
 		void setSpeed(Vector2 s);
-		static int getAmount();
+		static int getBMAmount();
 
 		void update();
 		void draw();

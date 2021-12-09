@@ -16,6 +16,9 @@
     <Filter Include="src\UI">
       <UniqueIdentifier>{f9b6d063-0b21-46cc-bd73-a96d2e5b4b5c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Missile">
+      <UniqueIdentifier>{c86e223a-23c0-473f-80d8-435ed1391dcb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -33,6 +36,9 @@
     <ClCompile Include="src\UI\UI.cpp">
       <Filter>src\UI</Filter>
     </ClCompile>
+    <ClCompile Include="src\Missile\missile.cpp">
+      <Filter>src\Missile</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Manager\manager.h">
@@ -46,6 +52,9 @@
     </ClInclude>
     <ClInclude Include="src\Meteor\meteor.h">
       <Filter>src\Meteor</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Missile\missile.h">
+      <Filter>src\Missile</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
