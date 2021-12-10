@@ -106,6 +106,9 @@ namespace MK2 {
 
 	void Player::draw()
 	{
+#if _DEBUG
+		DrawCircle(static_cast<int>(pos.x), static_cast<int>(pos.y), radius, RED);
+#endif
 		DrawTexturePro(sprite, Rectangle{ 0,0,(float)sprite.width,(float)sprite.height }, Rectangle{ pos.x, pos.y, (float)sprite.width * 1.5f,(float)sprite.height * 1.5f },
 			Vector2{ ((float)sprite.width * 1.5f) / 2, ((float)sprite.height * 1.5f) / 2 }, rotation, WHITE); //30width texture amplified to fit 45pix diameter.
 

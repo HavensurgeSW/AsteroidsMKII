@@ -112,6 +112,9 @@ namespace MK2 {
 			switch (id)
 			{
 			case 0:
+#if _DEBUG
+				DrawCircle(static_cast<int>(pos.x), static_cast<int>(pos.y), radius, SKYBLUE);
+#endif
 				DrawTexturePro(sprite,
 					Rectangle{ 0,0,(float)sprite.width,(float)sprite.height },
 					Rectangle{ pos.x, pos.y, (float)sprite.width * 2.8f,
@@ -121,6 +124,9 @@ namespace MK2 {
 					WHITE); //30width texture amplified to fit 45pix diameter.
 				break;
 			case 1:
+#if _DEBUG
+				DrawCircle(static_cast<int>(pos.x), static_cast<int>(pos.y), radius, SKYBLUE);
+#endif
 				DrawTexturePro(sprite,
 					Rectangle{ 0,0,(float)sprite.width,(float)sprite.height },
 					Rectangle{ pos.x, pos.y, (float)sprite.width * 1.9f,
@@ -130,6 +136,9 @@ namespace MK2 {
 					WHITE); //30width texture amplified to fit 45pix diameter.
 				break;
 			case 2:
+#if _DEBUG
+				DrawCircle(static_cast<int>(pos.x), static_cast<int>(pos.y), radius, SKYBLUE);
+#endif
 				DrawTexturePro(sprite,
 					Rectangle{ 0,0,(float)sprite.width,(float)sprite.height },
 					Rectangle{ pos.x, pos.y, (float)sprite.width * 1.0f,
