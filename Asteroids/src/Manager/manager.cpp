@@ -20,21 +20,20 @@ namespace MK2 {
 		SetExitKey(0);
 		SetTargetFPS(60);
 		menu = new Menu();
+		pausedClass = new Pause();
 		currentScreen = Screens::Menu;
 		p1 = new Player;
 		
-		bigMeteor[0] = new Meteor(0);
-		bigMeteor[1] = new Meteor(0);
-		bigMeteor[2] = new Meteor(0);
-		bigMeteor[3] = new Meteor(0);
+	
 
-
+		for (int i = 0; i < bigMeteorCount; i++)
+		{
+			bigMeteor[i] = new Meteor(0);
+		}	
 		for (int i = 0; i < midMeteorCount; i++)
 		{
 			midMeteor[i] = new Meteor(1);
 		}
-
-
 		for (int i = 0; i < smallMeteorCount; i++)
 		{
 			smallMeteor[i] = new Meteor(2);
@@ -135,6 +134,7 @@ namespace MK2 {
 						p1->shoot();
 					}
 				}
+				pauseInput();
 				if (IsKeyPressed(KEY_ESCAPE))
 				{
 					pause = !pause;
@@ -185,7 +185,7 @@ namespace MK2 {
 	{
 		BeginDrawing();
 		ClearBackground(BLACK);
-		UI::drawMousePointer();
+		UI::drawMousePointer(pause);
 		switch (currentScreen)
 		{
 		case Screens::Menu:
@@ -199,6 +199,7 @@ namespace MK2 {
 			if (pause)
 			{
 				UI::drawPause();
+				pausedClass->draw();
 			}
 			break;
 		case Screens::Gameover:
@@ -246,15 +247,39 @@ namespace MK2 {
 	{
 		switch (menu->input())
 		{
-		case 0:
-			break;
 		case 1:
-			currentScreen = Screens::Gameplay;
-			break;
-		case 2:
+			for (int i = 0; i < bigMeteorCount; i++)
+			{
+				bigMeteor[i]->resetMeteor();
+			}
+			for (int i = 0; i < midMeteorCount; i++)
+			{
+				midMeteor[i]->resetMeteor();
+			}
+			for (int i = 0; i < smallMeteorCount; i++)
+			{
+				smallMeteor[i]->resetMeteor();
+			}
+			currentScreen = Screens::Gameplay; //PLAY
 			break;
 		case 3:
-			program = false;
+			program = false; //EXIT
+			break;
+		default:
+			break;
+		}
+	}
+
+	void Manager::pauseInput()
+	{
+		switch (pausedClass->input())
+		{
+		case 1:
+			pause = false;
+			break;
+		case 2:
+			pause = false;
+			currentScreen = Screens::Menu;
 			break;
 		default:
 			break;

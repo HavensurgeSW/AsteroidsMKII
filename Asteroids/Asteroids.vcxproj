@@ -24,6 +24,7 @@
     <ClCompile Include="src\Menu\menu.cpp" />
     <ClCompile Include="src\Meteor\meteor.cpp" />
     <ClCompile Include="src\Missile\missile.cpp" />
+    <ClCompile Include="src\Pause\pause.cpp" />
     <ClCompile Include="src\Player\player.cpp" />
     <ClCompile Include="src\UI\UI.cpp" />
   </ItemGroup>
@@ -32,6 +33,7 @@
     <ClInclude Include="src\Menu\menu.h" />
     <ClInclude Include="src\Meteor\meteor.h" />
     <ClInclude Include="src\Missile\missile.h" />
+    <ClInclude Include="src\Pause\pause.h" />
     <ClInclude Include="src\Player\player.h" />
     <ClInclude Include="src\UI\UI.h" />
   </ItemGroup>

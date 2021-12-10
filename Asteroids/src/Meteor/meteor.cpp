@@ -152,6 +152,38 @@ namespace MK2 {
 		}
 	}
 
+	void Meteor::resetMeteor()
+	{
+		Rectangle safeArea;
+		safeArea.width = 200;
+		safeArea.height = 200;
+		safeArea.x = GetScreenWidth() / 2 - safeArea.width / 2;
+		safeArea.y = GetScreenHeight() / 2 - safeArea.height / 2;
+
+		do {
+			pos = { static_cast<float>(GetRandomValue(0,GetScreenWidth())), static_cast<float>(GetRandomValue(0, GetScreenHeight())) };
+		} while (CheckCollisionPointRec(pos, safeArea));
+
+		randomSpeed();
+		rotation = 0;
+
+		switch (id)
+		{
+		case 0:
+			active = true;
+			break;
+		case 1:
+			active = false;
+			break;
+		case 2:
+			active = false;
+			break;
+		default:
+			break;
+		}
+
+	}
+
 	void Meteor::randomSpeed() 
 	{
 		force.x = static_cast<float>(GetRandomValue(-150, 150));

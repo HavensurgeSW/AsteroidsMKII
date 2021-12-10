@@ -2,15 +2,22 @@
 
 namespace MK2
 {
-	void UI::drawMousePointer()
+	void UI::drawMousePointer(bool p)
 	{
+		Color clr;
+		if (!p)
+		{
+			clr = UIGREEN;
+		}
+		else clr = SKYBLUE;
+
 		DrawLineEx({ 0,GetMousePosition().y },
 			{ static_cast<float>(GetScreenWidth()),GetMousePosition().y },
-			2.0f, UIGREEN);
+			2.0f, clr);
 
 		DrawLineEx({ GetMousePosition().x,0 },
 			{ GetMousePosition().x,static_cast<float>(GetScreenHeight()) },
-			2.0f, UIGREEN);
+			2.0f, clr);
 
 		//UI green is a developer inserted DEFINE in Raylib's format
 	}

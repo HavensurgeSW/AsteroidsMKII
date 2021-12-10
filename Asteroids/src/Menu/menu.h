@@ -4,7 +4,6 @@
 struct Button {
 	Rectangle rec;
 	Color color;
-	bool hover;
 };
 
 class Menu {

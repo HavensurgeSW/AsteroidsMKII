@@ -29,6 +29,7 @@ namespace MK2 {
 		void explode();
 		void setSpeed(Vector2 s);
 		static int getBMAmount();
+		void resetMeteor();
 
 		void update();
 		void draw();

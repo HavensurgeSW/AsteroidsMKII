@@ -4,6 +4,7 @@
 #include "Player/player.h"
 #include "Meteor/meteor.h"
 #include "Menu/menu.h"
+#include "Pause/pause.h"
 
 using namespace std;
 
@@ -24,6 +25,7 @@ namespace MK2 {
 		Screens currentScreen;
 	
 		Menu* menu;
+		Pause* pausedClass;
 
 		//GAMEPLAY ELEMENTS
 		Player* p1;
@@ -53,6 +55,7 @@ namespace MK2 {
 		void meteorDraw();
 
 		void menuInput();
+		void pauseInput();
 	};
 }
 
