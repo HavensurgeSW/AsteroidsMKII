@@ -19,7 +19,8 @@ namespace MK2 {
 
 		SetExitKey(0);
 		SetTargetFPS(60);
-		currentScreen = Screens::Gameplay;
+		menu = new Menu();
+		currentScreen = Screens::Menu;
 		p1 = new Player;
 		
 		bigMeteor[0] = new Meteor(0);
@@ -159,6 +160,7 @@ namespace MK2 {
 		switch (currentScreen)
 		{
 		case Screens::Menu:
+			menu->draw();
 			break;
 		case Screens::Gameplay:
 

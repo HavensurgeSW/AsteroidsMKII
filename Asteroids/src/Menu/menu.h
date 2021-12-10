@@ -4,16 +4,19 @@
 struct Button {
 	Rectangle rec;
 	Color color;
-	const char text[10];
+	bool hover;
 };
 
 class Menu {
 private:
+	int textSizeButton;
 	Button play;
 	Button credits;
 	Button quit;
 public:
 	Menu();
 	~Menu();
-
+	void draw();
+	void update();
+	int input();
 };

@@ -3,6 +3,7 @@
 
 #include "Player/player.h"
 #include "Meteor/meteor.h"
+#include "Menu/menu.h"
 
 using namespace std;
 
@@ -20,14 +21,19 @@ namespace MK2 {
 		const int screenHeight = 720;
 		bool program;
 		Screens currentScreen;
+		//MENU
+		Menu* menu;
+
+
+		//GAMEPLAY ELEMENTS
 		Player* p1;
-		//vector<Meteor> bigMeteor;
 		Meteor* bigMeteor[4];
 		Meteor* midMeteor[8];
 		int midMeteorPool;
 		Meteor* smallMeteor[16];
 		int smallMeteorPool;
 
+		
 		Music background;
 		Music breath;
 		Music beep;

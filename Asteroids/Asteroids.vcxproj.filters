@@ -19,6 +19,12 @@
     <Filter Include="src\Missile">
       <UniqueIdentifier>{c86e223a-23c0-473f-80d8-435ed1391dcb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Scenes">
+      <UniqueIdentifier>{5cdb9d61-ecd2-44f2-ad43-32363ac2f6eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scenes\Menu">
+      <UniqueIdentifier>{573fcdac-b42b-4119-8e16-69b192073490}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -39,6 +45,9 @@
     <ClCompile Include="src\Missile\missile.cpp">
       <Filter>src\Missile</Filter>
     </ClCompile>
+    <ClCompile Include="src\Menu\menu.cpp">
+      <Filter>src\Scenes\Menu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Manager\manager.h">
@@ -55,6 +64,9 @@
     </ClInclude>
     <ClInclude Include="src\Missile\missile.h">
       <Filter>src\Missile</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Menu\menu.h">
+      <Filter>src\Scenes\Menu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
