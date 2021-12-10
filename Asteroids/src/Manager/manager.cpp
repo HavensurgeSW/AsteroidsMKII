@@ -118,14 +118,32 @@ namespace MK2 {
 
 	void Manager::input()
 	{
-		if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))
+		switch (currentScreen) 
 		{
-			p1->accelerate();
+			case Screens::Menu:
+				menuInput();
+				break;
+			case Screens::Gameplay:
+				if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))
+				{
+					p1->accelerate();
+				}
+				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+				{
+					p1->shoot();
+				}
+				break;
+			case Screens::Gameover:
+
+				break;
+			case Screens::Credits:
+
+				break;
+			default:
+				break;
+		
 		}
-		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-		{
-			p1->shoot();
-		}
+		
 	}
 
 	void Manager::update()
@@ -137,6 +155,7 @@ namespace MK2 {
 		switch (currentScreen)
 		{
 		case Screens::Menu:
+
 			break;
 		case Screens::Gameplay:
 			//FALTA INERCIA 
@@ -157,14 +176,14 @@ namespace MK2 {
 	{
 		BeginDrawing();
 		ClearBackground(BLACK);
+		UI::drawMousePointer();
 		switch (currentScreen)
 		{
 		case Screens::Menu:
 			menu->draw();
 			break;
 		case Screens::Gameplay:
-
-			UI::drawMousePointer();
+			UI::drawCoordinates();
 			p1->draw();
 			meteorDraw();
 			UI::drawEdges();
@@ -207,6 +226,26 @@ namespace MK2 {
 		for (int i = 0; i < smallMeteorCount; i++)
 		{
 			smallMeteor[i]->draw();
+		}
+	}
+
+	void Manager::menuInput()
+	{
+		switch (menu->input())
+		{
+		case 0:
+			break;
+		case 1:
+			currentScreen = Screens::Gameplay;
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		default:
+			break;
 		}
 	}
 }

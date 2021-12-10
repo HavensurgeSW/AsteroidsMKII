@@ -15,10 +15,15 @@ namespace MK2
 			2.0f, UIGREEN);
 
 		//UI green is a developer inserted DEFINE in Raylib's format
+	}
 
+	void UI::drawCoordinates()
+	{
 		DrawText(TextFormat("X: %i", static_cast<int>(GetMousePosition().x)), ((GetScreenWidth() / 100) * 4), ((GetScreenWidth() / 100) * 3), 20, UIGREEN);
 		DrawText(TextFormat("Y: %i", static_cast<int>(GetMousePosition().y)), ((GetScreenWidth() / 100) * 4), (0 + (GetScreenWidth() / 100) * 5), 20, UIGREEN);
 	}
+
+
 
 	
 	void UI::drawEdges()

@@ -5,6 +5,7 @@ namespace MK2 {
 	{
 	public:
 		static void drawMousePointer();
+		static void drawCoordinates();
 		static void drawEdges();
 	};
 }

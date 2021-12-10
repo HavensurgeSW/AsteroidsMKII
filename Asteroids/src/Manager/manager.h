@@ -51,6 +51,8 @@ namespace MK2 {
 		void draw();
 		void meteorUpdate();
 		void meteorDraw();
+
+		void menuInput();
 	};
 }
 

@@ -13,6 +13,7 @@ private:
 	Button play;
 	Button credits;
 	Button quit;
+
 public:
 	Menu();
 	~Menu();
