@@ -1,12 +1,10 @@
 #pragma once
-#include <vector>
-
 #include "Player/player.h"
 #include "Meteor/meteor.h"
 #include "Menu/menu.h"
 #include "Pause/pause.h"
 
-using namespace std;
+
 
 
 namespace MK2 {

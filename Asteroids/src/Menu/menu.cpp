@@ -44,11 +44,11 @@ void Menu::draw()
 	DrawText(FormatText("[E]xit"), static_cast<int>(quit.rec.x), static_cast<int>(quit.rec.y), textSizeButton, quit.color);
 	DrawText(FormatText(">"), static_cast<int>(quit.rec.x)-40, static_cast<int>(quit.rec.y), textSizeButton, quit.color);
 
-	DrawText(FormatText("//OS: Raylib 3.7"), static_cast<int>(GetScreenWidth()-GetScreenWidth()/3), static_cast<int>(play.rec.y), 30, UIGREEN);
-	DrawText(FormatText("//Graphics: Karplus"), static_cast<int>(GetScreenWidth() - GetScreenWidth() / 3), static_cast<int>(play.rec.y+40), 30, UIGREEN);
-	DrawText(FormatText("//Sounds: Karplus"), static_cast<int>(GetScreenWidth() - GetScreenWidth() / 3), static_cast<int>(play.rec.y + 80), 30, UIGREEN);
-	DrawText(FormatText("NedadSimic"), static_cast<int>(GetScreenWidth() - GetScreenWidth() / 5.13f), static_cast<int>(play.rec.y + 120), 30, UIGREEN);
-	DrawText(FormatText("//Code: Karplus"), static_cast<int>(GetScreenWidth() - GetScreenWidth() / 3), static_cast<int>(play.rec.y + 160), 30, UIGREEN);
+	DrawText(FormatText("//OS: Raylib 3.7"), static_cast<int>(GetScreenWidth()-GetScreenWidth()/3-30), static_cast<int>(play.rec.y), 30, UIGREEN);
+	DrawText(FormatText("//Graphics: Matias Karplus"), static_cast<int>(GetScreenWidth() - GetScreenWidth() / 3-30), static_cast<int>(play.rec.y+40), 30, UIGREEN);
+	DrawText(FormatText("//Sounds: Matias Karplus"), static_cast<int>(GetScreenWidth() - GetScreenWidth() / 3-30), static_cast<int>(play.rec.y + 80), 30, UIGREEN);
+	DrawText(FormatText("NedadSimic"), static_cast<int>(GetScreenWidth() - GetScreenWidth() / 5.13f-30), static_cast<int>(play.rec.y + 120), 30, UIGREEN);
+	DrawText(FormatText("//Code: Matias Karplus"), static_cast<int>(GetScreenWidth() - GetScreenWidth() / 3-30), static_cast<int>(play.rec.y + 160), 30, UIGREEN);
 }
 
 void Menu::update()

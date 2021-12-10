@@ -1,6 +1,8 @@
 #include "missile.h"
+
 #include <cmath>
 #include <iostream>
+
 using namespace std;
 
 int Missile::missileAmount = 0;

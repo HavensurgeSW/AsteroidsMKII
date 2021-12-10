@@ -1,9 +1,7 @@
 #pragma once
 #include "raylib.h"
-#include "Missile/missile.h"
 
-#include <vector>
-using namespace std;
+#include "Missile/missile.h"
 
 namespace MK2 {
 	class Player {

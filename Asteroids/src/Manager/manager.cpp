@@ -1,4 +1,5 @@
 #include "manager.h"
+
 #include "raylib.h"
 
 #include "UI/UI.h"
@@ -46,7 +47,22 @@ namespace MK2 {
 
 	Manager::~Manager()
 	{
+		delete menu;
+		delete pausedClass;
 		delete p1;
+
+		for (int i = 0; i < bigMeteorCount; i++)
+		{
+			delete bigMeteor[i];
+		}
+		for (int i = 0; i < midMeteorCount; i++)
+		{
+			delete midMeteor[i];
+		}
+		for (int i = 0; i < smallMeteorCount; i++)
+		{
+			delete smallMeteor[i];
+		}
 	}
 
 	void Manager::loop()

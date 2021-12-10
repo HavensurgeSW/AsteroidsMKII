@@ -1,6 +1,9 @@
 #include "meteor.h"
+
 #include <iostream>
+
 using namespace std;
+
 namespace MK2 {
 
 	Meteor::Meteor(int type)
