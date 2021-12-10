@@ -124,13 +124,20 @@ namespace MK2 {
 				menuInput();
 				break;
 			case Screens::Gameplay:
-				if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))
+				if (pause == false)
 				{
-					p1->accelerate();
+					if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))
+					{
+						p1->accelerate();
+					}
+					if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+					{
+						p1->shoot();
+					}
 				}
-				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+				if (IsKeyPressed(KEY_ESCAPE))
 				{
-					p1->shoot();
+					pause = !pause;
 				}
 				break;
 			case Screens::Gameover:
@@ -158,10 +165,12 @@ namespace MK2 {
 
 			break;
 		case Screens::Gameplay:
-			//FALTA INERCIA 
-			p1->update();
-			meteorUpdate();
-			collisions();
+			if (!pause)
+			{
+				p1->update();
+				meteorUpdate();
+				collisions();
+			}
 			break;
 		case Screens::Gameover:
 			break;
@@ -183,10 +192,14 @@ namespace MK2 {
 			menu->draw();
 			break;
 		case Screens::Gameplay:
-			UI::drawCoordinates();
+			UI::drawCoordinates(p1->getCenter());
 			p1->draw();
 			meteorDraw();
 			UI::drawEdges();
+			if (pause)
+			{
+				UI::drawPause();
+			}
 			break;
 		case Screens::Gameover:
 			break;
@@ -239,10 +252,9 @@ namespace MK2 {
 			currentScreen = Screens::Gameplay;
 			break;
 		case 2:
-
 			break;
 		case 3:
-
+			program = false;
 			break;
 		default:
 			break;

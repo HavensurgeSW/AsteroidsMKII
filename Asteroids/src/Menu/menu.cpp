@@ -33,11 +33,14 @@ Menu::~Menu()
 void Menu::draw()
 {
 	DrawText(FormatText("ASTEROIDS Mk.II"), GetScreenWidth() / 100 * 5, GetScreenHeight() / 10, 90, GREEN);
-	DrawText(FormatText("Software Ver. 1.0"), GetScreenWidth() / 100 * 5, static_cast<int>(GetScreenHeight() / 4.5f), 20, UIGREEN);
+	DrawText(FormatText("Firmware Ver. 1.0"), GetScreenWidth() / 100 * 5, static_cast<int>(GetScreenHeight() / 4.5f), 20, UIGREEN);
 	
 
 	DrawText(FormatText("[P]lay"), static_cast<int>(play.rec.x), static_cast<int>(play.rec.y), textSizeButton, play.color);
 	DrawText(FormatText(">"), static_cast<int>(play.rec.x)-40, static_cast<int>(play.rec.y), textSizeButton, play.color);
+
+	DrawText(FormatText("[LEFT_MOUSE] to shoot"), static_cast<int>(play.rec.x), static_cast<int>(play.rec.y+60), 25, UIGREEN);
+	DrawText(FormatText("[RIGHT_MOUSE] to move"), static_cast<int>(play.rec.x), static_cast<int>(play.rec.y+90), 25, UIGREEN);
 
 	DrawText(FormatText("[E]xit"), static_cast<int>(quit.rec.x), static_cast<int>(quit.rec.y), textSizeButton, quit.color);
 	DrawText(FormatText(">"), static_cast<int>(quit.rec.x)-40, static_cast<int>(quit.rec.y), textSizeButton, quit.color);
@@ -56,7 +59,7 @@ void Menu::update()
 
 int Menu::input()
 {
-	if (IsKeyPressed(KEY_P))
+	if (IsKeyPressed(KEY_P)||CheckCollisionPointRec(GetMousePosition(), play.rec)&&IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 	{
 		return 1;
 	}
@@ -64,7 +67,7 @@ int Menu::input()
 	{
 		return 2;
 	}
-	if (IsKeyPressed(KEY_E))
+	if (IsKeyPressed(KEY_E) || CheckCollisionPointRec(GetMousePosition(), quit.rec) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 	{
 		return 3;
 	}

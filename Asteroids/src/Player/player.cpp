@@ -96,8 +96,6 @@ namespace MK2 {
 		pos.x += (force.x * acceleration * GetFrameTime());
 		pos.y -= (force.y * acceleration * GetFrameTime());
 
-		
-
 		for (int i = 0; i < maxMissiles; i++){
 			magazine[i]->update();
 		}
