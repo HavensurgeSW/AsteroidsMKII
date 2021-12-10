@@ -298,8 +298,10 @@ namespace MK2 {
 
 	void Manager::menuInput()
 	{
+
 		switch (menu->input())
 		{
+			//Commit change
 		case 1:
 			for (int i = 0; i < bigMeteorCount; i++)
 			{
