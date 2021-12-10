@@ -14,6 +14,7 @@ namespace MK2 {
 
 		Texture2D atlas[3];
 		Texture2D sprite;
+		Sound death;
 	public:
 		Meteor(int type);
 		~Meteor();
@@ -21,6 +22,8 @@ namespace MK2 {
 		float getRadius();
 		Vector2 getCenter();
 		bool getActive();
+		Vector2 getPos();
+		void setPos(Vector2 p);
 		void setActive(bool a);
 
 		void explode();
@@ -34,7 +37,6 @@ namespace MK2 {
 		void movement();
 		void randomSpeed();
 		void screenLimit();
-
 		
 	};
 }

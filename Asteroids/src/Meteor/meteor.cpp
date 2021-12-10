@@ -23,6 +23,7 @@ namespace MK2 {
 		atlas[0] = LoadTexture("res/bigMeteor.png");
 		atlas[1] = LoadTexture("res/midMeteor.png");
 		atlas[2] = LoadTexture("res/smallMeteor.png");
+		death = LoadSound("res/muffleExplosion.ogg");
 
 	
 		switch (id)
@@ -34,7 +35,7 @@ namespace MK2 {
 			break;
 		case 1:
 			sprite = atlas[1];
-			radius = 25;
+			radius = 30;
 			active = false;
 			break;
 		case 2:
@@ -69,19 +70,30 @@ namespace MK2 {
 	Vector2 Meteor::getCenter()
 	{
 		Vector2 result;
-		result.x = pos.x - radius;
-		result.y = pos.y - radius;
+		result.x = pos.x;
+		result.y = pos.y;
 
 		return result;
 	}
 
 	void Meteor::explode()
 	{
+		PlaySound(death);
+	}
+
+	Vector2 Meteor::getPos()
+	{
+		return pos;
 	}
 
 	void Meteor::setSpeed(Vector2 f)
 	{
 		force = f;
+	}
+
+	void Meteor::setPos(Vector2 p)
+	{
+		pos = p;
 	}
 
 	void Meteor::update()
@@ -94,14 +106,40 @@ namespace MK2 {
 	{
 		if (active)
 		{
-			DrawCircle(static_cast<int>(pos.x), static_cast<int>(pos.y), radius, SKYBLUE);
-			DrawTexturePro(sprite,
-				Rectangle{ 0,0,(float)sprite.width,(float)sprite.height },
-				Rectangle{ pos.x, pos.y, (float)sprite.width * 2.8f,
-				(float)sprite.height * 2.8f },
-				Vector2{ ((float)sprite.width * 2.8f) / 2, ((float)sprite.height * 2.8f) / 2 },
-				rotation,
-				WHITE); //30width texture amplified to fit 45pix diameter.
+			switch (id)
+			{
+			case 0:
+				DrawTexturePro(sprite,
+					Rectangle{ 0,0,(float)sprite.width,(float)sprite.height },
+					Rectangle{ pos.x, pos.y, (float)sprite.width * 2.8f,
+					(float)sprite.height * 2.8f },
+					Vector2{ ((float)sprite.width * 2.8f) / 2, ((float)sprite.height * 2.8f) / 2 },
+					rotation,
+					WHITE); //30width texture amplified to fit 45pix diameter.
+				break;
+			case 1:
+				DrawTexturePro(sprite,
+					Rectangle{ 0,0,(float)sprite.width,(float)sprite.height },
+					Rectangle{ pos.x, pos.y, (float)sprite.width * 1.9f,
+					(float)sprite.height * 1.9f },
+					Vector2{ ((float)sprite.width * 1.9f) / 2, ((float)sprite.height * 1.9f) / 2 },
+					rotation,
+					WHITE); //30width texture amplified to fit 45pix diameter.
+				break;
+			case 2:
+				DrawTexturePro(sprite,
+					Rectangle{ 0,0,(float)sprite.width,(float)sprite.height },
+					Rectangle{ pos.x, pos.y, (float)sprite.width * 1.0f,
+					(float)sprite.height * 1.0f },
+					Vector2{ ((float)sprite.width * 1.0f) / 2, ((float)sprite.height * 1.0f) / 2 },
+					rotation,
+					WHITE); //30width texture amplified to fit 45pix diameter.
+				break;
+			default:
+				break;
+			}
+			//DrawCircle(static_cast<int>(pos.x), static_cast<int>(pos.y), radius, SKYBLUE);
+			
 		}
 	}
 

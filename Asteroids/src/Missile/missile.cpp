@@ -71,6 +71,12 @@ void Missile::setActive(bool a)
 	active = a;
 }
 
+void Missile::destroy()
+{
+	active = false;
+	activeMissiles--;
+}
+
 void Missile::updateVec(Vector2 p, Vector2 f)
 {
 	activeMissiles++;

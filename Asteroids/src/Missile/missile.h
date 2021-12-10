@@ -27,6 +27,7 @@ public:
 	bool getActive();
 	void setActive(bool a);
 
+	void destroy();
 	void updateVec(Vector2 p, Vector2 f);
 
 	static int getMagPos();

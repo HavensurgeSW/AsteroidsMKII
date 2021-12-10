@@ -13,7 +13,7 @@ namespace MK2 {
 		pos.y = static_cast<float>(GetScreenHeight() / 2);
 		force.x = 0.0f;
 		force.y = 0.0f;
-		acceleration = 15.0f;
+		acceleration = 12.0f;
 		rotation = 0.0f;
 		radius = 22.5f;
 

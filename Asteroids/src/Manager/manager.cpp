@@ -4,9 +4,9 @@
 #include "UI/UI.h"
 
 namespace MK2 {
-	const int bigMeteorCount = 3;
-	const int midMeteorCount = 6;
-	const int smallMeteorCount = 12;
+	const int bigMeteorCount = 4;
+	const int midMeteorCount = 8;
+	const int smallMeteorCount = 16;
 	Manager::Manager()
 	{
 		program = true;
@@ -25,19 +25,22 @@ namespace MK2 {
 		bigMeteor[0] = new Meteor(0);
 		bigMeteor[1] = new Meteor(0);
 		bigMeteor[2] = new Meteor(0);
+		bigMeteor[3] = new Meteor(0);
 
-		midMeteor[0] = new Meteor(1);
-		midMeteor[1] = new Meteor(1);
-		midMeteor[2] = new Meteor(1);
-		midMeteor[3] = new Meteor(1);
-		midMeteor[4] = new Meteor(1);
-		midMeteor[5] = new Meteor(1);
+
+		for (int i = 0; i < midMeteorCount; i++)
+		{
+			midMeteor[i] = new Meteor(1);
+		}
+
 
 		for (int i = 0; i < smallMeteorCount; i++)
 		{
 			smallMeteor[i] = new Meteor(2);
 		}
-		 
+
+		midMeteorPool = 0;
+		smallMeteorPool = 0; 
 	}
 
 	Manager::~Manager()
@@ -65,28 +68,51 @@ namespace MK2 {
 
 	void Manager::collisions()
 	{
-#if _DEBUG
-		for (int i = 0; i < bigMeteorCount; i++)
-		{
-			if (CheckCollisionCircles(p1->getCenter(), p1->getRadius(), bigMeteor[i]->getCenter(), bigMeteor[i]->getRadius()))
-			{
-				
-			}
-		}
-#endif
-
 		for (int  i = 0; i <8; i++)
 		{
-			for (int j = 0; j < 3; j++)
+			for (int j = 0; j < bigMeteorCount; j++)
 			{
-				if (CheckCollisionCircles(p1->magazine[i]->getCenter(), p1->magazine[i]->getRadius(), bigMeteor[j]->getCenter(), bigMeteor[j]->getRadius()))
+				if (CheckCollisionCircles(p1->magazine[i]->getCenter(), p1->magazine[i]->getRadius(), bigMeteor[j]->getCenter(), bigMeteor[j]->getRadius())&&p1->magazine[i]->getActive()&&bigMeteor[j]->getActive())
 				{
+					p1->magazine[i]->destroy();
 					bigMeteor[j]->setActive(false);
+					bigMeteor[j]->explode();
+
+					midMeteor[midMeteorPool]->setActive(true);
+					midMeteor[midMeteorPool]->setPos(bigMeteor[j]->getPos());
+					midMeteor[midMeteorPool+1]->setActive(true);
+					midMeteor[midMeteorPool+1]->setPos(bigMeteor[j]->getPos());
+
+					midMeteorPool += 2;
+				}
+			}
+
+			for (int j = 0; j < midMeteorCount; j++)
+			{
+				if (CheckCollisionCircles(p1->magazine[i]->getCenter(), p1->magazine[i]->getRadius(), midMeteor[j]->getCenter(), midMeteor[j]->getRadius()) && p1->magazine[i]->getActive() && midMeteor[j]->getActive())
+				{
+					p1->magazine[i]->destroy();
+					midMeteor[j]->setActive(false);
+					midMeteor[j]->explode();
+
+					smallMeteor[smallMeteorPool]->setActive(true);
+					smallMeteor[smallMeteorPool]->setPos(midMeteor[j]->getPos());
+					smallMeteor[smallMeteorPool + 1]->setActive(true);
+					smallMeteor[smallMeteorPool + 1]->setPos(midMeteor[j]->getPos());
+
+					smallMeteorPool += 2;
+				}
+			}
+			for (int j = 0; j < smallMeteorCount; j++)
+			{
+				if (CheckCollisionCircles(p1->magazine[i]->getCenter(), p1->magazine[i]->getRadius(), smallMeteor[j]->getCenter(), smallMeteor[j]->getRadius()) && p1->magazine[i]->getActive() && smallMeteor[j]->getActive())
+				{
+					p1->magazine[i]->destroy();
+					smallMeteor[j]->explode();
+					smallMeteor[j]->setActive(false);
 				}
 			}
 		}
-
-
 	}
 
 	void Manager::input()

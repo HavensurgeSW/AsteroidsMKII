@@ -22,9 +22,11 @@ namespace MK2 {
 		Screens currentScreen;
 		Player* p1;
 		//vector<Meteor> bigMeteor;
-		Meteor* bigMeteor[3];
-		Meteor* midMeteor[6];
-		Meteor* smallMeteor[12];
+		Meteor* bigMeteor[4];
+		Meteor* midMeteor[8];
+		int midMeteorPool;
+		Meteor* smallMeteor[16];
+		int smallMeteorPool;
 
 		Music background;
 		Music breath;
