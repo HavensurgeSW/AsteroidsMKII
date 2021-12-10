@@ -122,7 +122,7 @@
       <AdditionalLibraryDirectories>$(SolutionDir)\lib\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)\lib\lib\raylib.dll" "$(TargetDir)"
+      <Command>xcopy "$(SolutionDir)\lib\lib\raylib.dll" "$(TargetDir)" /E /Y
 mkdir $(TargetDir)\res
 xcopy "$(SolutionDir)\res" $(TargetDir)\res /E /Y
 </Command>
