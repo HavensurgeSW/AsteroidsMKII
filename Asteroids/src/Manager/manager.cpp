@@ -24,7 +24,8 @@ namespace MK2 {
 		currentScreen = Screens::Menu;
 		p1 = new Player;
 		
-	
+		winTarget = bigMeteorCount + midMeteorCount + smallMeteorCount;
+		score = 0;
 
 		for (int i = 0; i < bigMeteorCount; i++)
 		{
@@ -68,51 +69,86 @@ namespace MK2 {
 
 	void Manager::collisions()
 	{
-		for (int  i = 0; i <8; i++)
+		// Bullets vs Meteors
 		{
-			for (int j = 0; j < bigMeteorCount; j++)
+			for (int i = 0; i < 8; i++)
 			{
-				if (CheckCollisionCircles(p1->magazine[i]->getCenter(), p1->magazine[i]->getRadius(), bigMeteor[j]->getCenter(), bigMeteor[j]->getRadius())&&p1->magazine[i]->getActive()&&bigMeteor[j]->getActive())
+				for (int j = 0; j < bigMeteorCount; j++)
 				{
-					p1->magazine[i]->destroy();
-					bigMeteor[j]->setActive(false);
-					bigMeteor[j]->explode();
+					if (CheckCollisionCircles(p1->magazine[i]->getCenter(), p1->magazine[i]->getRadius(), bigMeteor[j]->getCenter(), bigMeteor[j]->getRadius()) && p1->magazine[i]->getActive() && bigMeteor[j]->getActive())
+					{
+						p1->magazine[i]->destroy();
+						bigMeteor[j]->setActive(false);
+						bigMeteor[j]->explode();
 
-					midMeteor[midMeteorPool]->setActive(true);
-					midMeteor[midMeteorPool]->setPos(bigMeteor[j]->getPos());
-					midMeteor[midMeteorPool+1]->setActive(true);
-					midMeteor[midMeteorPool+1]->setPos(bigMeteor[j]->getPos());
+						midMeteor[midMeteorPool]->setActive(true);
+						midMeteor[midMeteorPool]->setPos(bigMeteor[j]->getPos());
+						midMeteor[midMeteorPool + 1]->setActive(true);
+						midMeteor[midMeteorPool + 1]->setPos(bigMeteor[j]->getPos());
 
-					midMeteorPool += 2;
+						midMeteorPool += 2;
+						score++;
+					}
+				}
+
+				for (int j = 0; j < midMeteorCount; j++)
+				{
+					if (CheckCollisionCircles(p1->magazine[i]->getCenter(), p1->magazine[i]->getRadius(), midMeteor[j]->getCenter(), midMeteor[j]->getRadius()) && p1->magazine[i]->getActive() && midMeteor[j]->getActive())
+					{
+						p1->magazine[i]->destroy();
+						midMeteor[j]->setActive(false);
+						midMeteor[j]->explode();
+
+						smallMeteor[smallMeteorPool]->setActive(true);
+						smallMeteor[smallMeteorPool]->setPos(midMeteor[j]->getPos());
+						smallMeteor[smallMeteorPool + 1]->setActive(true);
+						smallMeteor[smallMeteorPool + 1]->setPos(midMeteor[j]->getPos());
+
+						smallMeteorPool += 2;
+						score++;
+					}
+				}
+				for (int j = 0; j < smallMeteorCount; j++)
+				{
+					if (CheckCollisionCircles(p1->magazine[i]->getCenter(), p1->magazine[i]->getRadius(), smallMeteor[j]->getCenter(), smallMeteor[j]->getRadius()) && p1->magazine[i]->getActive() && smallMeteor[j]->getActive())
+					{
+						p1->magazine[i]->destroy();
+						smallMeteor[j]->explode();
+						smallMeteor[j]->setActive(false);
+						score++;
+					}
 				}
 			}
-
-			for (int j = 0; j < midMeteorCount; j++)
+		}  
+		// Player vs Meteors
+		{
+			for (int i = 0; i < bigMeteorCount; i++)
 			{
-				if (CheckCollisionCircles(p1->magazine[i]->getCenter(), p1->magazine[i]->getRadius(), midMeteor[j]->getCenter(), midMeteor[j]->getRadius()) && p1->magazine[i]->getActive() && midMeteor[j]->getActive())
+				if (CheckCollisionCircles(p1->getCenter(),p1->getRadius(),bigMeteor[i]->getCenter(),bigMeteor[i]->getRadius())&&bigMeteor[i]->getActive())
 				{
-					p1->magazine[i]->destroy();
-					midMeteor[j]->setActive(false);
-					midMeteor[j]->explode();
-
-					smallMeteor[smallMeteorPool]->setActive(true);
-					smallMeteor[smallMeteorPool]->setPos(midMeteor[j]->getPos());
-					smallMeteor[smallMeteorPool + 1]->setActive(true);
-					smallMeteor[smallMeteorPool + 1]->setPos(midMeteor[j]->getPos());
-
-					smallMeteorPool += 2;
+					currentScreen = Screens::Menu;
 				}
 			}
-			for (int j = 0; j < smallMeteorCount; j++)
+			for (int i = 0; i < midMeteorCount; i++)
 			{
-				if (CheckCollisionCircles(p1->magazine[i]->getCenter(), p1->magazine[i]->getRadius(), smallMeteor[j]->getCenter(), smallMeteor[j]->getRadius()) && p1->magazine[i]->getActive() && smallMeteor[j]->getActive())
+				if (CheckCollisionCircles(p1->getCenter(), p1->getRadius(), midMeteor[i]->getCenter(), midMeteor[i]->getRadius()) && midMeteor[i]->getActive())
 				{
-					p1->magazine[i]->destroy();
-					smallMeteor[j]->explode();
-					smallMeteor[j]->setActive(false);
+					currentScreen = Screens::Menu;
+				}
+			}
+			for (int i = 0; i < smallMeteorCount; i++)
+			{
+				if (CheckCollisionCircles(p1->getCenter(), p1->getRadius(), smallMeteor[i]->getCenter(), smallMeteor[i]->getRadius()) && smallMeteor[i]->getActive())
+				{
+					currentScreen = Screens::Menu;
 				}
 			}
 		}
+	}
+
+	void Manager::winCon()
+	{
+		if (score == winTarget)currentScreen = Screens::Menu;
 	}
 
 	void Manager::input()
@@ -170,6 +206,7 @@ namespace MK2 {
 				p1->update();
 				meteorUpdate();
 				collisions();
+				winCon();
 			}
 			break;
 		case Screens::Gameover:
@@ -260,6 +297,7 @@ namespace MK2 {
 			{
 				smallMeteor[i]->resetMeteor();
 			}
+			p1->zero();
 			currentScreen = Screens::Gameplay; //PLAY
 			break;
 		case 3:

@@ -35,7 +35,9 @@ namespace MK2 {
 		Meteor* smallMeteor[16];
 		int smallMeteorPool;
 
-		
+		int winTarget;
+		int score;
+
 		Music background;
 		Music breath;
 		Music beep;
@@ -47,6 +49,7 @@ namespace MK2 {
 
 	private:
 		void collisions();
+		void winCon();
 
 		void input();
 		void update();

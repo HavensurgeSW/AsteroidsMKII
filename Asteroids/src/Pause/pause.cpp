@@ -8,7 +8,7 @@ Pause::Pause()
 	resume.rec.width = 150.0f;
 	resume.color = SKYBLUE;
 
-	mainMenu.rec.x = GetScreenWidth() / 3.0f;
+	mainMenu.rec.x = GetScreenWidth() / 3.5f;
 	mainMenu.rec.y = GetScreenHeight() / 2.0f;
 	mainMenu.rec.height = 40.0f;
 	mainMenu.rec.width = 100.0f;
