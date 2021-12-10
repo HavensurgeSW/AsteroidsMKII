@@ -122,10 +122,9 @@
       <AdditionalLibraryDirectories>$(SolutionDir)\lib\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)\lib\lib\raylib.dll" "$(TargetDir)" /E /Y
-mkdir $(TargetDir)\res
-xcopy "$(SolutionDir)\res" $(TargetDir)\res /E /Y
-</Command>
+      <Command>xcopy "$(SolutionDir)\lib\lib\raylib.dll" "$(TargetDir)" /E /Y /I
+mkdir "$(TargetDir)\res"
+xcopy "$(SolutionDir)\res" "$(TargetDir)\res" /E /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -149,10 +148,9 @@ xcopy "$(SolutionDir)\res" $(TargetDir)\res /E /Y
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)\lib\lib\raylib.dll" "$(TargetDir)" /E /Y
-mkdir $(TargetDir)\res
-xcopy "$(SolutionDir)\res" "$(TargetDir)\res" /E /Y
-</Command>
+      <Command>xcopy "$(SolutionDir)\lib\lib\raylib.dll" "$(TargetDir)" /E /Y /I
+mkdir "$(TargetDir)\res"
+xcopy "$(SolutionDir)\res" "$(TargetDir)\res" /E /Y /I</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
