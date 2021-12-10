@@ -37,6 +37,9 @@ namespace MK2
 		DrawLineEx({ static_cast<float>(GetScreenWidth()) - (GetScreenWidth() / 100) * 3, 0.0f + (GetScreenHeight() / 100) * 3 }, { static_cast<float>(GetScreenWidth()) - (GetScreenWidth() / 100) * 3, static_cast<float>(GetScreenHeight()) - (GetScreenHeight() / 100) * 3 }, 4.0f, DARKGREEN);
 		DrawLineEx({ 0.0f + (GetScreenWidth() / 100) * 3, 0.0f + (GetScreenHeight() / 100) * 3 }, { static_cast<float>(GetScreenWidth()) - (GetScreenWidth() / 100) * 3, 0.0f + (GetScreenHeight() / 100) * 3 }, 4.0f, DARKGREEN);
 		DrawLineEx({ 0.0f + (GetScreenWidth() / 100) * 3, static_cast<float>(GetScreenHeight()) - (GetScreenHeight() / 100) * 3 }, { static_cast<float>(GetScreenWidth()) - (GetScreenWidth() / 100) * 3, static_cast<float>(GetScreenHeight()) - (GetScreenHeight() / 100) * 3 }, 4.0f, DARKGREEN);
+#if _DEBUG
+		DrawRectangleLines(GetScreenWidth()/2 - 200,GetScreenHeight()/2-200, 400,400, YELLOW );
+#endif
 	}
 	void UI::drawPause()
 	{

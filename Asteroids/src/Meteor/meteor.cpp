@@ -9,8 +9,8 @@ namespace MK2 {
 	Meteor::Meteor(int type)
 	{
 		Rectangle safeArea;
-		safeArea.width = 200;
-		safeArea.height = 200;
+		safeArea.width = 400;
+		safeArea.height = 400;
 		safeArea.x = GetScreenWidth()/2 - safeArea.width/2 ;
 		safeArea.y = GetScreenHeight() / 2 - safeArea.height / 2;
 
