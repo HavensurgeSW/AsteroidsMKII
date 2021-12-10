@@ -314,6 +314,9 @@ namespace MK2 {
 				smallMeteor[i]->resetMeteor();
 			}
 			p1->zero();
+			score = 0;
+			midMeteorPool = 0;
+			smallMeteorPool = 0;
 			currentScreen = Screens::Gameplay; //PLAY
 			break;
 		case 3:
