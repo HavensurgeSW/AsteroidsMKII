@@ -65,6 +65,11 @@ namespace MK2 {
 		force.x = 0.0f;
 		force.y = 0.0f;
 		acceleration = 0.0f;
+
+		for (int i = 0; i < maxMissiles; i++)
+		{
+			magazine[i]->setActive(false);
+		}
 	}
 
 	void Player::shoot()
