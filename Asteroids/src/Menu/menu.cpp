@@ -32,7 +32,7 @@ Menu::~Menu()
 void Menu::draw()
 {
 	DrawText(FormatText("ASTEROIDS Mk.II"), GetScreenWidth() / 100 * 5, GetScreenHeight() / 10, 90, GREEN);
-	DrawText(FormatText("Firmware Ver. 1.0"), GetScreenWidth() / 100 * 5, static_cast<int>(GetScreenHeight() / 4.5f), 20, UIGREEN);
+	DrawText(FormatText("Firmware Ver. 1.0.2"), GetScreenWidth() / 100 * 5, static_cast<int>(GetScreenHeight() / 4.5f), 20, UIGREEN);
 	
 
 	DrawText(FormatText("[P]lay"), static_cast<int>(play.rec.x), static_cast<int>(play.rec.y), textSizeButton, play.color);
