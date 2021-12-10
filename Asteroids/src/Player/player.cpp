@@ -13,7 +13,8 @@ namespace MK2 {
 		pos.y = static_cast<float>(GetScreenHeight() / 2);
 		force.x = 0.0f;
 		force.y = 0.0f;
-		acceleration = 12.0f;
+		acceleration = 0.0f;
+		thrust = 12.0f;
 		rotation = 0.0f;
 		radius = 22.5f;
 
@@ -63,6 +64,7 @@ namespace MK2 {
 		pos.y = static_cast<float>(GetScreenHeight() / 2);
 		force.x = 0.0f;
 		force.y = 0.0f;
+		acceleration = 0.0f;
 	}
 
 	void Player::shoot()
@@ -91,10 +93,25 @@ namespace MK2 {
 		move();
 	}
 
+	float Player::getAcceleration()
+	{
+		return acceleration;
+	}
+
+	void Player::addAcceleration(float a)
+	{
+		acceleration += a;
+	}
+
+	void Player::setAcceleration(float a)
+	{
+		acceleration = a;
+	}
+
 	void Player::update()
 	{
-		pos.x += (force.x * acceleration * GetFrameTime());
-		pos.y -= (force.y * acceleration * GetFrameTime());
+		pos.x += (force.x *thrust *acceleration * GetFrameTime());
+		pos.y -= (force.y *thrust *acceleration * GetFrameTime());
 
 		for (int i = 0; i < maxMissiles; i++){
 			magazine[i]->update();
@@ -120,8 +137,8 @@ namespace MK2 {
 	//PRIVATE - (Update)
 	void Player::move()
 	{
-		force.x = sin(rotation * DEG2RAD) * acceleration;
-		force.y = cos(rotation * DEG2RAD) * acceleration;
+		force.x = sin(rotation * DEG2RAD) * thrust *acceleration;
+		force.y = cos(rotation * DEG2RAD) * thrust *acceleration;
 	}
 
 	void Player::followMouse()

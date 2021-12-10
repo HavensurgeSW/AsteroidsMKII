@@ -10,6 +10,7 @@ namespace MK2 {
 		Vector2 pos;
 		Vector2 force;
 		float acceleration;
+		float thrust;
 		float rotation;
 		float radius;
 
@@ -28,6 +29,11 @@ namespace MK2 {
 
 		void shoot();
 		void accelerate();
+
+		float getAcceleration();
+		void addAcceleration(float a);
+		void setAcceleration(float a);
+
 		void update();
 		void draw();
 

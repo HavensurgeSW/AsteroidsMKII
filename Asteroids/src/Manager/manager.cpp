@@ -11,6 +11,7 @@ namespace MK2 {
 	Manager::Manager()
 	{
 		program = true;
+		pause = false;
 		InitWindow(screenWidth, screenHeight, "Asteroids MK II");
 		InitAudioDevice();
 
@@ -179,12 +180,16 @@ namespace MK2 {
 				{
 					if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))
 					{
+						if (p1->getAcceleration() < 1)p1->addAcceleration(0.02f);
 						p1->accelerate();
 					}
 					if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 					{
 						p1->shoot();
 					}
+
+					if (p1->getAcceleration() > 0) p1->addAcceleration(-0.01f);
+					else if (p1->getAcceleration() < 0)p1->addAcceleration(0);
 				}
 				pauseInput();
 				if (IsKeyPressed(KEY_ESCAPE))
