@@ -180,7 +180,7 @@ namespace MK2 {
 				{
 					if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))
 					{
-						if (p1->getAcceleration() < 1)p1->addAcceleration(0.02f);
+						if (p1->getAcceleration() < 1.2f)p1->addAcceleration(0.025f);
 						p1->accelerate();
 					}
 					if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
@@ -188,8 +188,8 @@ namespace MK2 {
 						p1->shoot();
 					}
 
-					if (p1->getAcceleration() > 0) p1->addAcceleration(-0.01f);
-					else if (p1->getAcceleration() < 0)p1->addAcceleration(0);
+					if (p1->getAcceleration() > 0.4f) p1->addAcceleration(-0.01f);
+					else if (p1->getAcceleration() < 0)p1->addAcceleration(0.4f);
 				}
 				pauseInput();
 				if (IsKeyPressed(KEY_ESCAPE))

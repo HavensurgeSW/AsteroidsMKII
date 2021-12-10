@@ -142,8 +142,8 @@ namespace MK2 {
 	//PRIVATE - (Update)
 	void Player::move()
 	{
-		force.x = sin(rotation * DEG2RAD) * thrust *acceleration;
-		force.y = cos(rotation * DEG2RAD) * thrust *acceleration;
+		force.x = (sin(rotation * DEG2RAD) * thrust *acceleration);
+		force.y = (cos(rotation * DEG2RAD) * thrust *acceleration);
 	}
 
 	void Player::followMouse()
